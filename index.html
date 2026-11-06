@@ -3,1033 +3,616 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HakikatAğı | Dijital Farkındalık ve Doğrulama Rehberi</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Dijital Farkındalık ve Bilgi Doğrulama Rehberi</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            900: '#1e3a8a',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .glass-nav {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-500 selection:text-white">
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
 
-    <!-- Üst Gezinti Çubuğu (Navigation) -->
-    <header class="sticky top-0 z-50 glass-nav bg-white/85 border-b border-slate-200/80 transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-2.5 group">
-                <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
-                    <i data-lucide="shield-check" class="w-5 h-5"></i>
-                </div>
-                <div>
-                    <span class="text-xl font-bold tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors">Hakikat<span class="text-blue-600">Ağı</span></span>
-                    <span class="hidden sm:inline-block ml-2 text-xs font-semibold px-2 py-0.5 bg-blue-50 text-blue-700 rounded-full border border-blue-200/50">Sosyal Sorumluluk</span>
-                </div>
-            </a>
-
-            <!-- Masaüstü Linkler -->
-            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600">
-                <a href="#amac" class="hover:text-blue-600 transition-colors">Misyonumuz</a>
-                <a href="#teyit-testi" class="hover:text-blue-600 transition-colors">Teyit Testi</a>
-                <a href="#ceklist" class="hover:text-blue-600 transition-colors">Doğrulama Çeklisti</a>
-                <a href="#rehber" class="hover:text-blue-600 transition-colors">Dijital Rehber</a>
-                <a href="#katki" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-sm hover:shadow transition-all flex items-center gap-1.5">
-                    <i data-lucide="send" class="w-4 h-4"></i>
-                    <span>Şüpheli İçerik Bildir</span>
-                </a>
+    <!-- Üst Gezinti Çubuğu -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-600/30">
+                    <i class="fa-solid fa-shield-halved text-lg"></i>
+                </span>
+                <span class="font-bold text-lg tracking-tight text-white">Teyit<span class="text-indigo-400">Rehberi</span></span>
+            </div>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-400">
+                <a href="#test" class="hover:text-white transition-colors">Farkındalık Testi</a>
+                <a href="#kontrol-listesi" class="hover:text-white transition-colors">Kontrol Listesi</a>
+                <a href="#rehber" class="hover:text-white transition-colors">Doğrulama Usulleri</a>
+                <a href="#istatistik" class="hover:text-white transition-colors">Saha Verileri</a>
             </nav>
-
-            <!-- Mobil Menü Butonu -->
-            <button id="mobileMenuBtn" aria-label="Menüyü Aç" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
-        </div>
-
-        <!-- Mobil Menü Açılır Panel -->
-        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 bg-white px-4 py-4 space-y-3 text-sm font-medium">
-            <a href="#amac" class="block py-2 text-slate-700 hover:text-blue-600">Misyonumuz</a>
-            <a href="#teyit-testi" class="block py-2 text-slate-700 hover:text-blue-600">Teyit Testi</a>
-            <a href="#ceklist" class="block py-2 text-slate-700 hover:text-blue-600">Doğrulama Çeklisti</a>
-            <a href="#rehber" class="block py-2 text-slate-700 hover:text-blue-600">Dijital Rehber</a>
-            <a href="#katki" class="block py-2 text-blue-600 font-semibold">Şüpheli İçerik Bildir</a>
+            <a href="#test" class="text-xs sm:text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg transition-all shadow-md shadow-indigo-600/20">
+                Kendini Dene
+            </a>
         </div>
     </header>
 
-    <main>
-        <!-- Kahraman (Hero) Bölümü -->
-        <section id="amac" class="relative overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-32 bg-gradient-to-b from-blue-50/70 via-white to-slate-50 border-b border-slate-200/60">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/80 border border-blue-200 text-blue-800 text-xs font-semibold mb-6">
-                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                        <span>Dezenformasyon ve Siber Zorbalıkla Mücadele</span>
-                    </div>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-                        Dijital Dünyada <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Hakikatin İzini</span> Sürün.
-                    </h1>
-                    <p class="mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed font-normal">
-                        Sosyal ağlarda hızla yayılan asılsız haberler, manipülatif görseller ve dijital tuzaklar toplumları kutuplaştırıyor. Bu proje; eleştirel düşünme refleksini güçlendirmek ve bireylere internet okuryazarlığı kazandırmak amacıyla hazırlandı.
-                    </p>
-                    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-                        <a href="#teyit-testi" class="px-6 py-3.5 rounded-xl bg-blue-600 text-white font-medium shadow-md shadow-blue-500/25 hover:bg-blue-700 hover:shadow-lg transition-all flex items-center gap-2">
-                            <span>Hemen Teyit Becerini Sına</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </a>
-                        <a href="#ceklist" class="px-6 py-3.5 rounded-xl bg-white text-slate-700 font-medium border border-slate-300 hover:bg-slate-50 transition-colors flex items-center gap-2">
-                            <i data-lucide="check-square" class="w-4 h-4 text-blue-600"></i>
-                            <span>Doğrulama Çeklistini Aç</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Özet Göstergeler / İstatistikler -->
-                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                    <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start space-x-4">
-                        <div class="p-3 rounded-xl bg-amber-50 text-amber-600 border border-amber-100">
-                            <i data-lucide="zap" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <div class="text-2xl font-bold text-slate-900">6 Kat Hızlı</div>
-                            <p class="text-sm text-slate-600 mt-1">Yalan haberler sosyal ağlarda doğru bilgiye kıyasla 6 kat daha hızlı dolaşıma giriyor.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start space-x-4">
-                        <div class="p-3 rounded-xl bg-blue-50 text-blue-600 border border-blue-100">
-                            <i data-lucide="search" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <div class="text-2xl font-bold text-slate-900">%68 Oran</div>
-                            <p class="text-sm text-slate-600 mt-1">İnternet kullanıcılarının büyük kısmı teyit edilmemiş bilgileri fark etmeden paylaşıyor.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start space-x-4">
-                        <div class="p-3 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100">
-                            <i data-lucide="eye" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <div class="text-2xl font-bold text-slate-900">3 Saniyede Dur</div>
-                            <p class="text-sm text-slate-600 mt-1">Paylaşmadan önce 3 saniye durup kaynağı sorgulamak bilgi kirliliğini %80 engelliyor.</p>
-                        </div>
-                    </div>
-                </div>
+    <!-- Giriş Bölümü -->
+    <section class="py-16 md:py-24 border-b border-slate-800/80 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-6">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span>Sosyal Sorumluluk ve Dijital Savunma Projesi</span>
             </div>
-        </section>
-
-        <!-- Etkileşimli Teyit Testi (Interactive Quiz) -->
-        <section id="teyit-testi" class="py-20 bg-white">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-10">
-                    <span class="text-blue-600 font-semibold text-xs sm:text-sm uppercase tracking-wider">İnteraktif Farkındalık Simülatörü</span>
-                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Gerçek Yaşam Senaryoları & Teyit Testi</h2>
-                    <p class="text-slate-600 mt-2 max-w-2xl mx-auto text-sm sm:text-base">
-                        Gelen SMS'ler, WhatsApp zincir mesajları, şüpheli sosyal medya paylaşımları ve sahte bağlantılar... 7 farklı gerçekçi vakayı analiz edin ve tehlike işaretlerini keşfedin.
-                    </p>
-                </div>
-
-                <!-- Test Konteyneri -->
-                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-5 sm:p-8 shadow-sm">
-                    <!-- İlerleme Çubuğu ve Sayaç -->
-                    <div class="flex items-center justify-between text-xs sm:text-sm font-semibold text-slate-600 mb-2">
-                        <span id="quizStepText" class="inline-flex items-center gap-1.5 font-bold text-blue-700">
-                            <i data-lucide="layers" class="w-4 h-4"></i> Senaryo 1 / 7
-                        </span>
-                        <div class="flex items-center gap-2">
-                            <span class="text-slate-500">Kazanılan Puan:</span>
-                            <span id="quizScoreText" class="px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 font-bold">0</span>
-                        </div>
-                    </div>
-                    <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden mb-6">
-                        <div id="quizProgressBar" class="bg-gradient-to-r from-blue-600 to-indigo-600 h-2.5 rounded-full transition-all duration-300 w-[14%]"></div>
-                    </div>
-
-                    <!-- Soru / Senaryo Alanı -->
-                    <div id="quizQuestionBox">
-                        <!-- Senaryo Türü & Başlığı -->
-                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-                            <span id="quizCategoryBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
-                                <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
-                                <span id="quizCategoryName">SMS Oltalama</span>
-                            </span>
-                            <span class="text-xs text-slate-400 font-medium">Eleştirel Gözle İnceleyin</span>
-                        </div>
-
-                        <!-- Dinamik Görsel Simülasyon Kartı (SMS / Chat / Tweet / Sistem) -->
-                        <div id="quizMockupContainer" class="mb-6">
-                            <!-- JS ile gerçekçi kart render edilecek -->
-                        </div>
-
-                        <!-- Durum Açıklaması ve Yönerge -->
-                        <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 mb-5 shadow-xs">
-                            <h3 id="quizHeadline" class="text-base sm:text-lg font-bold text-slate-900 mb-1"></h3>
-                            <p id="quizDetails" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
-                        </div>
-
-                        <!-- Seçenekler -->
-                        <div class="space-y-2.5" id="quizOptionsContainer">
-                            <!-- JS ile üretilir -->
-                        </div>
-
-                        <!-- Geri Bildirim Alanı (İlk başta gizli) -->
-                        <div id="quizFeedbackBox" class="hidden mt-6 p-5 rounded-2xl border transition-all text-sm leading-relaxed shadow-xs"></div>
-
-                        <!-- Sonraki Soru Butonu -->
-                        <div class="mt-6 flex justify-end">
-                            <button id="quizNextBtn" class="hidden px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm transition-all flex items-center gap-2 shadow-sm">
-                                <span>Sonraki Senaryo</span>
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Sonuç Ekranı (Test Bitince Gösterilir) -->
-                    <div id="quizResultBox" class="hidden text-center py-8 px-2">
-                        <div id="quizResultIcon" class="w-20 h-20 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-inner">
-                            <i data-lucide="award" class="w-10 h-10"></i>
-                        </div>
-                        <span class="text-xs font-bold text-blue-600 tracking-wider uppercase">Değerlendirme Raporu</span>
-                        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Simülasyon Tamamlandı!</h3>
-                        <div class="mt-3 inline-block px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-sm font-semibold text-slate-800">
-                            Başarı Skoru: <span id="quizFinalScore" class="text-blue-600 font-bold">0 / 70</span>
-                        </div>
-                        <p id="quizFinalMessage" class="mt-4 text-slate-600 max-w-xl mx-auto text-sm sm:text-base leading-relaxed"></p>
-
-                        <!-- Dijital Savunma Karnesi -->
-                        <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto text-left">
-                            <div class="p-4 bg-white border border-slate-200 rounded-xl">
-                                <span class="text-xs text-slate-500 font-medium">Oltalama & SMS</span>
-                                <div id="statPhishing" class="text-sm font-bold text-slate-900 mt-1">İncelendi</div>
-                            </div>
-                            <div class="p-4 bg-white border border-slate-200 rounded-xl">
-                                <span class="text-xs text-slate-500 font-medium">Manipülasyon & AI</span>
-                                <div id="statManip" class="text-sm font-bold text-slate-900 mt-1">İncelendi</div>
-                            </div>
-                            <div class="p-4 bg-white border border-slate-200 rounded-xl">
-                                <span class="text-xs text-slate-500 font-medium">Sosyal Medya Refleksi</span>
-                                <div id="statSocial" class="text-sm font-bold text-slate-900 mt-1">İncelendi</div>
-                            </div>
-                        </div>
-
-                        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-                            <button onclick="resetQuiz()" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-medium transition shadow-sm flex items-center gap-2">
-                                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
-                                <span>Testi Yeniden Başlat</span>
-                            </button>
-                            <a href="#ceklist" class="px-5 py-3 border border-slate-300 hover:bg-slate-100 text-slate-700 rounded-xl text-sm font-medium transition">
-                                Kontrol Çeklistine Git
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Şüpheli Haber Doğrulama Çeklisti (Checklist Tool) -->
-        <section id="ceklist" class="py-20 bg-slate-50 border-t border-slate-200/70">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Pratik Doğrulama Aracı</span>
-                    <h2 class="text-3xl font-bold text-slate-900 mt-1">Haber Doğrulama Kontrol Listesi</h2>
-                    <p class="text-slate-600 mt-2 max-w-2xl mx-auto">
-                        Karşılaştığınız bir haber veya iddiayı paylaşmadan önce aşağıdaki kriterleri adım adım işaretleyin ve güvenilirlik puanını görün.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                    <!-- Sol/Orta Kolon: Maddeler -->
-                    <div class="lg:col-span-2 space-y-3">
-                        <label class="flex items-start p-4 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-blue-400 transition-all select-none group">
-                            <input type="checkbox" class="checklist-item mt-1 w-5 h-5 rounded text-blue-600 focus:ring-blue-500 border-slate-300">
-                            <div class="ml-3.5">
-                                <span class="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">1. Kaynak ve İmzası Belirtilmiş mi?</span>
-                                <p class="text-xs text-slate-500 mt-0.5">İçeriğin yazarı, kurum bilgisi ve açık irtibat adresi bulunuyor mu?</p>
-                            </div>
-                        </label>
-
-                        <label class="flex items-start p-4 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-blue-400 transition-all select-none group">
-                            <input type="checkbox" class="checklist-item mt-1 w-5 h-5 rounded text-blue-600 focus:ring-blue-500 border-slate-300">
-                            <div class="ml-3.5">
-                                <span class="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">2. Tarihi Güncel ve Açık mı?</span>
-                                <p class="text-xs text-slate-500 mt-0.5">Eski bir hadiseye ait fotoğraf veya video yeni bir gelişmeymiş gibi sunuluyor olabilir mi?</p>
-                            </div>
-                        </label>
-
-                        <label class="flex items-start p-4 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-blue-400 transition-all select-none group">
-                            <input type="checkbox" class="checklist-item mt-1 w-5 h-5 rounded text-blue-600 focus:ring-blue-500 border-slate-300">
-                            <div class="ml-3.5">
-                                <span class="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">3. Tersine Görsel Arama Yapıldı mı?</span>
-                                <p class="text-xs text-slate-500 mt-0.5">Görsel Google Lens veya TinEye ile aratılıp ilk çıkış bağlamı kontrol edildi mi?</p>
-                            </div>
-                        </label>
-
-                        <label class="flex items-start p-4 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-blue-400 transition-all select-none group">
-                            <input type="checkbox" class="checklist-item mt-1 w-5 h-5 rounded text-blue-600 focus:ring-blue-500 border-slate-300">
-                            <div class="ml-3.5">
-                                <span class="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">4. Tıklama Tuzağı (Clickbait) Dilinden Uzak mı?</span>
-                                <p class="text-xs text-slate-500 mt-0.5">"Şok gelişme!", "Bunu kimse bilmiyor!" gibi aşırı duygu sömürüsü ve heyecan içeren ifadeler yok mu?</p>
-                            </div>
-                        </label>
-
-                        <label class="flex items-start p-4 bg-white border border-slate-200 rounded-2xl cursor-pointer hover:border-blue-400 transition-all select-none group">
-                            <input type="checkbox" class="checklist-item mt-1 w-5 h-5 rounded text-blue-600 focus:ring-blue-500 border-slate-300">
-                            <div class="ml-3.5">
-                                <span class="font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">5. Bağımsız Teyit Kuruluşları Tarafından Doğrulandı mı?</span>
-                                <p class="text-xs text-slate-500 mt-0.5">Teyit.org, Malumatfuruş veya uluslararası doğrulama ajanslarında içerik yer alıyor mu?</p>
-                            </div>
-                        </label>
-                    </div>
-
-                    <!-- Sağ Kolon: Canlı Güven Göstergesi -->
-                    <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm sticky top-24 text-center">
-                        <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Güvenilirlik Seviyesi</div>
-                        <div class="relative w-36 h-36 mx-auto flex items-center justify-center">
-                            <!-- SVG Gauge Ring -->
-                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="40" stroke="#f1f5f9" stroke-width="8" fill="none" />
-                                <circle id="gaugeCircle" cx="50" cy="50" r="40" stroke="#3b82f6" stroke-width="8" stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" fill="none" class="transition-all duration-500" />
-                            </svg>
-                            <div class="absolute inset-0 flex flex-col items-center justify-center">
-                                <span id="gaugePercent" class="text-3xl font-extrabold text-slate-900">0%</span>
-                                <span class="text-[11px] text-slate-500 font-medium">Doğruluk</span>
-                            </div>
-                        </div>
-
-                        <div id="gaugeVerdict" class="mt-4 px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200 inline-block">
-                            Henüz Doğrulanmadı
-                        </div>
-
-                        <p id="gaugeAdvice" class="mt-3 text-xs text-slate-500 leading-normal">
-                            Lütfen en az 3 maddeyi doğrulamadan bu içeriği diğer insanlarla paylaşmayın.
-                        </p>
-
-                        <button onclick="resetChecklist()" class="mt-5 w-full py-2 border border-slate-200 text-slate-600 hover:bg-slate-50 rounded-xl text-xs font-medium transition">
-                            Listeyi Temizle
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Dijital Güvenlik ve Farkındalık Rehberi -->
-        <section id="rehber" class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Eğitim & Rehber</span>
-                    <h2 class="text-3xl font-bold text-slate-900 mt-1">Bilinçli İnternet Kullanımı Kılavuzu</h2>
-                    <p class="text-slate-600 mt-2">Dijital dünyada kişisel haklarınızı ve zihinsel esenliğinizi korumanın dört temel sütunu.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Kart 1 -->
-                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center mb-5">
-                            <i data-lucide="shield-alert" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900">Sosyal Mühendislik & Oltalama</h3>
-                        <p class="text-sm text-slate-600 mt-2 leading-relaxed">
-                            "Hesabınız kilitlendi", "Para ödülü kazandınız" gibi aciliyet hissi uyandıran mesajlardaki bağlantılara tıklamayın. Kurumlar sizden şifre talep etmez.
-                        </p>
-                    </div>
-
-                    <!-- Kart 2 -->
-                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-5">
-                            <i data-lucide="footprints" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900">Dijital Ayak İzi Yönetimi</h3>
-                        <p class="text-sm text-slate-600 mt-2 leading-relaxed">
-                            Paylaştığınız her konum, fotoğraf ve yorum internet hafızasında kalıcı iz bırakır. Gizlilik ayarlarınızı belirli aralıklarla gözden geçirin.
-                        </p>
-                    </div>
-
-                    <!-- Kart 3 -->
-                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-5">
-                            <i data-lucide="key-round" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900">Güçlü Şifre & 2FA</h3>
-                        <p class="text-sm text-slate-600 mt-2 leading-relaxed">
-                            Tüm hesaplarınızda tek şifre kullanmayın. İki faktörlü doğrulamayı (2FA) etkinleştirerek izinsiz erişimleri %99 oranında engelleyin.
-                        </p>
-                    </div>
-
-                    <!-- Kart 4 -->
-                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 hover:shadow-md transition-shadow">
-                        <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-5">
-                            <i data-lucide="clock" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-900">Ekran Süresi ve Zihin Sağlığı</h3>
-                        <p class="text-sm text-slate-600 mt-2 leading-relaxed">
-                            Sonsuz kaydırma (infinite scroll) algoritmaları bağımlılık için tasarlanmıştır. Günde en az 1 saat çevrimdışı mola vererek zihninizi dinlendirin.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Kaynak Bildir / Gönüllü Katkı Formu -->
-        <section id="katki" class="py-20 bg-slate-50 border-t border-slate-200/70">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-white border border-slate-200 rounded-3xl p-8 sm:p-10 shadow-sm">
-                    <div class="text-center mb-8">
-                        <div class="inline-flex p-3 rounded-2xl bg-blue-50 text-blue-600 mb-3">
-                            <i data-lucide="flag" class="w-6 h-6"></i>
-                        </div>
-                        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Şüpheli İçerik Bildir</h2>
-                        <p class="text-sm text-slate-600 mt-1">
-                            İnternette karşılaştığınız şüpheli bir haberi veya dezenformasyonu analiz edilmek üzere bildirebilirsiniz.
-                        </p>
-                    </div>
-
-                    <!-- Form -->
-                    <form id="reportForm" class="space-y-4" onsubmit="handleFormSubmit(event)">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="reporterName">Adınız veya Takma Ad</label>
-                            <input type="text" id="reporterName" required placeholder="Örn: Ahmet Y." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="reportUrl">Şüpheli İçerik Bağlantısı / URL</label>
-                            <input type="url" id="reportUrl" required placeholder="https://..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="reportCategory">Kategori</label>
-                            <select id="reportCategory" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm bg-white">
-                                <option value="manipulasyon">Görsel / Video Manipülasyonu</option>
-                                <option value="oltalama">Dolandırıcılık / Oltalama Linki</option>
-                                <option value="yalan-haber">Asılsız Haber / Dezenformasyon</option>
-                                <option value="siber-zorbalik">Siber Zorbalık / Tehdit</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1" for="reportDescription">Neden Şüpheli Buldunuz?</label>
-                            <textarea id="reportDescription" rows="3" required placeholder="Gördüğünüz çelişkiyi kısaca açıklayınız..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 text-sm">
-                            <i data-lucide="check" class="w-4 h-4"></i>
-                            <span>İnceleme Havuzuna Gönder</span>
-                        </button>
-                    </form>
-
-                    <!-- Başarı Mesajı Kutusu (İlk başta gizli) -->
-                    <div id="formSuccessMessage" class="hidden mt-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-center text-sm">
-                        <i data-lucide="check-circle" class="w-6 h-6 mx-auto mb-1 text-emerald-600"></i>
-                        <span class="font-bold">Bildiriminiz başarıyla kaydedildi!</span>
-                        <p class="text-xs text-emerald-700 mt-0.5">Toplumun bilgi kirliliğinden arınmasına katkı sağladığınız için teşekkürler.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Alt Bilgi (Footer) -->
-    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center space-x-2">
-                <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold">
-                    <i data-lucide="shield" class="w-4 h-4"></i>
-                </div>
-                <span class="text-white font-bold text-base tracking-tight">HakikatAğı</span>
-                <span class="text-xs bg-slate-800 px-2.5 py-0.5 rounded-full text-slate-300">Öğrenci Sosyal Sorumluluk Projesi</span>
-            </div>
-            <p class="text-xs text-center md:text-left text-slate-500">
-                Bu proje kâr amacı gütmeyen eğitim ve farkındalık ödevi kapsamında hazırlanmıştır.
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
+                Dijital Çağda Hakikati Koru, <br class="hidden sm:inline">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400">
+                    Oltalama ve Yalanı Ayırt Et
+                </span>
+            </h1>
+            <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+                Her gün sahte SMS'ler, manipülatif manşetler ve üretilmiş görsellerle karşılaşıyoruz. 
+                Hazırlanan 10 gerçekçi vaka simülasyonu ile dijital teyit reflekslerinizi ölçün.
             </p>
-            <div class="flex items-center space-x-6 text-xs">
-                <a href="#amac" class="hover:text-white transition">Hakkında</a>
-                <a href="#teyit-testi" class="hover:text-white transition">Test</a>
-                <a href="#ceklist" class="hover:text-white transition">Çeklist</a>
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <a href="#test" class="w-full sm:w-auto px-8 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-indigo-600/25 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-play text-sm"></i>
+                    <span>10 Vakalı Teste Başla</span>
+                </a>
+                <a href="#kontrol-listesi" class="w-full sm:w-auto px-8 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-xl border border-slate-700 transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-list-check text-sm"></i>
+                    <span>Teyit Çizelgesi</span>
+                </a>
             </div>
         </div>
+    </section>
+
+    <!-- Akademik ve Teyit Verileri -->
+    <section id="istatistik" class="py-12 bg-slate-950 border-b border-slate-800/80">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+                    <div class="text-3xl font-extrabold text-indigo-400 mb-2">6 Kat Hızlı</div>
+                    <div class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-1">MIT Science Araştırması (2018)</div>
+                    <p class="text-sm text-slate-400">Asılsız bilgilerin kitlelere ulaşma ve yayılma sürati, teyitli gerçek haberlere kıyasla 6 kat daha yüksektir.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+                    <div class="text-3xl font-extrabold text-amber-400 mb-2">%68 Yanılgı</div>
+                    <div class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-1">Algı Deneyleri Eşiği</div>
+                    <p class="text-sm text-slate-400">İncelenen algı testlerinde kullanıcıların büyük kısmı yapay zekâ ile üretilmiş sahte yüz ve ses kayıtlarını ilk bakışta ayırt edememektedir.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+                    <div class="text-3xl font-extrabold text-emerald-400 mb-2">3 Saniye Kuralı</div>
+                    <div class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-1">Dürtü Kontrolü İlkesi</div>
+                    <p class="text-sm text-slate-400">Şüpheli bir bağlantıya tıklamadan veya heyecan uyandıran bir haberi paylaşmadan önce 3 saniye durup kaynağı sorgulamak dolandırıcılığı %80 önler.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İnteraktif Simülasyon Testi (10 Vaka) -->
+    <section id="test" class="py-16 md:py-24 border-b border-slate-800">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">Vaka Tabanlı Teyit Testi</h2>
+                <p class="text-slate-400 text-sm">Aşağıdaki 10 vakayı dikkatle inceleyin ve en güvenli adımı seçin.</p>
+            </div>
+
+            <div class="bg-slate-800/60 border border-slate-700/80 rounded-2xl p-6 sm:p-8 shadow-xl relative backdrop-blur-sm" id="quiz-container">
+                <!-- Üst İlerleme Çubuğu -->
+                <div class="flex items-center justify-between text-xs font-semibold text-slate-400 mb-3">
+                    <span id="quiz-progress-text">Vaka 1 / 10</span>
+                    <span id="quiz-score-badge" class="px-2.5 py-0.5 rounded-full bg-slate-700 text-slate-300">Puan: 0</span>
+                </div>
+                <div class="w-full bg-slate-700 h-2 rounded-full mb-8 overflow-hidden">
+                    <div id="quiz-progress-bar" class="bg-indigo-500 h-full w-[10%] transition-all duration-300"></div>
+                </div>
+
+                <!-- Vaka Kartı -->
+                <div id="quiz-card">
+                    <div class="inline-block px-2.5 py-1 rounded bg-indigo-500/20 text-indigo-300 text-xs font-bold uppercase tracking-wider mb-3" id="case-type">
+                        Kategori
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-4" id="case-title">
+                        Vaka Başlığı
+                    </h3>
+
+                    <!-- Simüle Ekran Görünümü -->
+                    <div id="case-mockup" class="mb-6 p-4 rounded-xl border font-mono text-sm">
+                        <!-- İçerik JS ile doldurulur -->
+                    </div>
+
+                    <!-- Şıklar -->
+                    <div class="space-y-3" id="quiz-options">
+                        <!-- Şıklar JS ile doldurulur -->
+                    </div>
+
+                    <!-- Geri Bildirim Alanı -->
+                    <div id="quiz-feedback" class="hidden mt-6 p-4 rounded-xl text-sm leading-relaxed border"></div>
+
+                    <!-- Sonraki Butonu -->
+                    <div class="mt-6 flex justify-end">
+                        <button id="next-btn" class="hidden px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-lg text-sm transition-all flex items-center gap-2">
+                            <span>Sonraki Vaka</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sonuç Ekranı (Varsayılan Gizli) -->
+                <div id="quiz-result" class="hidden text-center py-8">
+                    <div class="w-20 h-20 mx-auto rounded-full bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-3xl mb-6" id="result-icon">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2" id="result-title">Test Tamamlandı</h3>
+                    <p class="text-slate-400 text-sm max-w-md mx-auto mb-6" id="result-desc"></p>
+                    <div class="text-4xl font-extrabold text-white mb-8" id="result-score">0 / 10</div>
+                    <button onclick="restartQuiz()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl text-sm transition-all inline-flex items-center gap-2">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Testi Tekrar Başlat</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontrol Listesi ve Teyit Çizelgesi -->
+    <section id="kontrol-listesi" class="py-16 md:py-24 border-b border-slate-800 bg-slate-950">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">Hızlı İçerik Teyit Çizelgesi</h2>
+                <p class="text-slate-400 text-sm">Şüpheli bir bilgiyle karşılaştığınızda adımları işaretleyerek güvenilirlik seviyesini hesaplayın.</p>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8">
+                <div class="space-y-4 mb-8" id="checklist-items">
+                    <label class="flex items-start gap-3.5 p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:bg-slate-800 cursor-pointer transition-colors">
+                        <input type="checkbox" class="check-item mt-1 w-4 h-4 rounded text-indigo-600 focus:ring-0 bg-slate-900 border-slate-600">
+                        <span class="text-sm text-slate-300">Haber veya iletide net bir <strong>tarih ve saat</strong> belirtilmiş mi? (Eski içerik hortlatması değil mi?)</span>
+                    </label>
+                    <label class="flex items-start gap-3.5 p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:bg-slate-800 cursor-pointer transition-colors">
+                        <input type="checkbox" class="check-item mt-1 w-4 h-4 rounded text-indigo-600 focus:ring-0 bg-slate-900 border-slate-600">
+                        <span class="text-sm text-slate-300">Haberi aktaran <strong>muhabir, resmî kurum veya kaynak</strong> açıkça ismiyle yazılmış mı?</span>
+                    </label>
+                    <label class="flex items-start gap-3.5 p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:bg-slate-800 cursor-pointer transition-colors">
+                        <input type="checkbox" class="check-item mt-1 w-4 h-4 rounded text-indigo-600 focus:ring-0 bg-slate-900 border-slate-600">
+                        <span class="text-sm text-slate-300">Aynı iddia en az iki bağımsız ve tanınmış <strong>resmî haber ajansında</strong> yer alıyor mu?</span>
+                    </label>
+                    <label class="flex items-start gap-3.5 p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:bg-slate-800 cursor-pointer transition-colors">
+                        <input type="checkbox" class="check-item mt-1 w-4 h-4 rounded text-indigo-600 focus:ring-0 bg-slate-900 border-slate-600">
+                        <span class="text-sm text-slate-300">Kullanılan görsel tersine görsel arama (Google Lens vb.) ile tarandığında <strong>eski bir olaya ait çıkmıyor</strong> mu?</span>
+                    </label>
+                    <label class="flex items-start gap-3.5 p-3.5 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:bg-slate-800 cursor-pointer transition-colors">
+                        <input type="checkbox" class="check-item mt-1 w-4 h-4 rounded text-indigo-600 focus:ring-0 bg-slate-900 border-slate-600">
+                        <span class="text-sm text-slate-300">Metin sizi panik, öfke veya aceleyle paylaşıma zorlayan <strong>taraflı bir dil kullanmıyor</strong> mu?</span>
+                    </label>
+                </div>
+
+                <!-- Sonuç Kutusu -->
+                <div class="p-4 rounded-xl bg-slate-800/90 border border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-slate-700 flex items-center justify-center text-lg font-bold text-white" id="check-ratio">0/5</div>
+                        <div>
+                            <div class="text-sm font-bold text-white" id="check-status">Değerlendirme Yapılmadı</div>
+                            <div class="text-xs text-slate-400" id="check-desc">Maddeleri işaretleyerek teyit düzeyini kontrol edin.</div>
+                        </div>
+                    </div>
+                    <button onclick="resetChecklist()" class="text-xs font-semibold text-slate-400 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700 hover:bg-slate-700 transition-colors">
+                        Temizle
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doğrulama Usulleri ve Güvenlik Rehberi -->
+    <section id="rehber" class="py-16 md:py-24 border-b border-slate-800">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">Temel Doğrulama Usulleri</h2>
+                <p class="text-slate-400 text-sm">Gündelik internet kullanımında başvurulacak nesnel emniyet kaideleri.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-6 rounded-2xl bg-slate-800/40 border border-slate-800">
+                    <div class="w-10 h-10 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Alan Adı (Domain) Anatomisi</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Dolandırıcılar sıklıkla harf oyunlarına başvurur (örn. <code class="text-sky-300">turkiye-gov-tr.top</code>). 
+                        Resmî kamu kurumlarının alan adları her zaman <strong class="text-slate-200">.gov.tr</strong>, eğitim kurumlarının ise <strong class="text-slate-200">.edu.tr</strong> ile biter. Uzantının sonunu mutlaka denetleyin.
+                    </p>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-800/40 border border-slate-800">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-camera-rotate"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Tersine Görsel Arama Usulü</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Şüphelendiğiniz fotoğrafları Google Görseller veya Yandex Görsel servisine yükleyin. 
+                        Görselin ilk ne zaman ve hangi hakiki olay için internete yüklendiğini saniyeler içinde tespit edebilirsiniz.
+                    </p>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-800/40 border border-slate-800">
+                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-fingerprint"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Yapay Zekâ ve Deepfake İzleri</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Üretilmiş görüntülerde kulak memesi simetrisi, göz bebeklerindeki ışık yansıması, el parmaklarının anatomisi ve diş detayları ekseriyetle bozuktur. Ses kayıtlarında ise nefes alma aralıklarının yokluğu sahteliği ele verir.
+                    </p>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-800/40 border border-slate-800">
+                    <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Aciliyet ve Korku Manipülasyonu</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        "Derhal tıklayın, hesabınız kapatılacak" veya "Son 10 dakika" benzeri ifadeler kurbanın mantıklı düşünmesini engellemek için tasarlanmış psikolojik baskı teknikleridir. Soğukkanlılıkla resmî kanallardan teyit edin.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bildirim Formu (İstemci Taraflı Simülasyon) -->
+    <section class="py-16 bg-slate-950">
+        <div class="max-w-2xl mx-auto px-4">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8">
+                <h3 class="text-xl font-bold text-white mb-2">Şüpheli İçerik Bildirimi</h3>
+                <p class="text-xs text-slate-400 mb-6">Sosyal medyada veya SMS ile karşılaştığınız şüpheli bir bağlantıyı inceleme havuzuna iletin.</p>
+                <form id="report-form" onsubmit="handleReport(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Şüpheli Bağlantı (URL) veya İleti Metni</label>
+                        <input type="text" required placeholder="https://... veya gelen kısa mesaj" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">İçerik Türü</label>
+                        <select class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                            <option>SMS Oltalama (Smishing)</option>
+                            <option>Sahte e-Devlet / Banka Portalı</option>
+                            <option>WhatsApp Zincir İletisi</option>
+                            <option>Yapay Zekâ / Deepfake Görsel/Video</option>
+                            <option>Asılsız Haber / Tık Tuzağı</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl text-sm transition-all shadow-md">
+                        Bildirimi Kaydet
+                    </button>
+                    <div id="report-success" class="hidden p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs text-center">
+                        Bildiriminiz başarıyla alındı. Teyit havuzuna eklendi.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alt Bilgi -->
+    <footer class="mt-auto py-8 border-t border-slate-800 bg-slate-900 text-center text-xs text-slate-500">
+        <p>Dijital Farkındalık ve Bilgi Doğrulama Sosyal Sorumluluk Projesi © 2026</p>
+        <p class="mt-1">Akademik araştırma ve kamu bilinçlendirme amacıyla geliştirilmiştir.</p>
     </footer>
 
-    <!-- Uygulama Mantığı ve Etkileşim Kodları (Vanilla JS) -->
+    <!-- JavaScript Mantığı -->
     <script>
-        // İkonları İlklendir
-        lucide.createIcons();
-
-        // Mobil Menü Aç/Kapat
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // ----------------------------------------------------
-        // 1. TEYİT TESTİ (7 GERÇEKÇİ SENARYO & GÖRSEL MOCKUP)
-        // ----------------------------------------------------
+        // 10 Vaka Veritabanı (Şıklar rastgele indekslere [0, 1, 2] dağıtılmıştır)
         const quizData = [
             {
-                category: "SMS Oltalama (Smishing)",
-                categoryType: "sms",
-                badgeClass: "bg-rose-100 text-rose-800 border-rose-200",
-                badgeIcon: "message-square-warning",
-                headline: "Gecikmiş Kargo Bildirimi ve Adres Güncelleme Talebi",
-                details: "Telefonunuza bilinmeyen bir numaradan veya başlıkla gelen aşağıdaki kısa mesajı aldınız. Ne yapmalısınız?",
-                mockupHtml: `
-                    <div class="max-w-md mx-auto bg-slate-900 text-white rounded-2xl p-4 shadow-md font-mono text-xs border border-slate-800">
-                        <div class="flex items-center justify-between pb-3 border-b border-slate-800 text-slate-400 text-[11px]">
-                            <span class="flex items-center gap-1.5"><i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-400"></i> +90 541 *** 19 28</span>
-                            <span>Bugün 14:22</span>
-                        </div>
-                        <div class="mt-3 p-3.5 bg-slate-800/90 rounded-xl border border-slate-700/80 leading-relaxed text-slate-200 font-sans text-xs sm:text-sm">
-                            Sayin musterimiz, paketiniz adres yetersizligi sebebiyle dagitim merkezine iade edilmistir. Urunun tekrar dagitima cikarilabilmesi icin 4.50 TL guncelleme bedelini odeyiniz: 
-                            <span class="text-rose-400 font-mono underline block mt-2 break-all font-semibold">https://ptt-kargo-takip-merkezi.me/adres-duzenle</span>
-                        </div>
+                type: "SMS Oltalama (Smishing)",
+                title: "Kargo Gönderi Takip Mesajı",
+                mockup: `
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-slate-300">
+                        <div class="text-xs text-slate-500 mb-1">Kimden: B001 - KargoTakip</div>
+                        <p class="text-sm">"Paketiniz adres yetersizliği sebebiyle teslim edilememiştir. Güncelleme yapmazsanız iade edilecektir: <span class="text-sky-400 underline">ptt-kargo-teslimat.live/guncelle</span>"</p>
                     </div>
                 `,
                 options: [
-                    { 
-                        text: "Paketim geri dönmesin diye hemen linke tıklar, kredi kartımla 4.50 TL'yi öderim.", 
-                        isCorrect: false 
-                    },
-                    { 
-                        text: "Tuzaktır. Alan adı (domain) sahtedir (.gov.tr veya ptt.gov.tr değil), SMS ile cüzi ücret talep eden oltalama girişimidir.", 
-                        isCorrect: true 
-                    },
-                    { 
-                        text: "Numarayı arayıp kargocuyla nerede buluşabileceğimi sorarım.", 
-                        isCorrect: false 
-                    }
+                    "Kargom gecikmesin diye derhal bağlantıyı açıp adresi yenilerim.",
+                    "Bağlantıya tıklamam; PTT'nin resmî internet sitesinden veya müşteri hizmetlerinden kargo numarasını sorgularım.",
+                    "SMS'i atan numaraya 'Hangi kargo?' diye mesaj gönderirim."
                 ],
-                redFlags: [
-                    "Resmî kargo firmaları asla yabancı uzantılı (.me, .top, .live) alan adları kullanmaz.",
-                    "Küçük tutarlı (4-5 TL) 'güncelleme harcı' bahanesiyle kart şifresi ve CVV hırsızlığı hedeflenmektedir.",
-                    "Türkçe karakter eksiklikleri ve aciliyet yaratma dili tipik dolandırıcılık göstergesidir."
-                ],
-                explanation: "Doğru teşhis! Bu yöntem 'Smishing' (SMS ile oltalama) olarak bilinir. PTT veya kurumsal kargo şirketleri '.gov.tr' ya da tescilli kurumsal web siteleri haricinde link göndermez ve küçük ödemeler için SMS'ten kart bilgisi istemez."
+                correct: 1, // B şıkkı
+                feedback: "Doğru. Resmî kargo şirketleri '.live', '.top', '.club' gibi sahte uzantılarla SMS göndermez. Bağlantılara tıklanmamalı, resmî uygulama veya siteden takip koduyla sorgulanmalıdır."
             },
             {
-                category: "WhatsApp Zincir Mesajı",
-                categoryType: "whatsapp",
-                badgeClass: "bg-emerald-100 text-emerald-800 border-emerald-200",
-                badgeIcon: "share-2",
-                headline: "Büyük Market Zinciri 1.000 TL Hediye Çeki Kampanyası",
-                details: "Bir akrabanız veya arkadaşınız WhatsApp üzerinden heyecanla aşağıdaki mesajı iletti:",
-                mockupHtml: `
-                    <div class="max-w-md mx-auto bg-[#e5ddd5] rounded-2xl p-4 shadow-inner text-slate-800 font-sans">
-                        <div class="text-[11px] text-center text-slate-500 mb-2 font-medium">WhatsApp Mesajı</div>
-                        <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-sm border border-slate-200/60 max-w-[90%]">
-                            <div class="flex items-center gap-1 text-[11px] text-slate-400 font-medium mb-1">
-                                <i data-lucide="forward" class="w-3.5 h-3.5"></i>
-                                <span>İletildi</span>
-                            </div>
-                            <p class="text-xs sm:text-sm text-slate-800">
-                                🎉 Migros 70. yilina ozel herkese 1000 TL hediye kuponu dagitiyor! Ben aldim simdi sen de al. Linke tikla formu doldur ve 10 arkadasina gonder aninda kupon kodun gelsin:
-                            </p>
-                            <div class="mt-2 p-2 bg-slate-100 rounded-lg text-xs font-mono text-blue-700 underline break-all">
-                                http://migros-hediyeceki-2026.club/tr
-                            </div>
-                        </div>
+                type: "Anlık Mesajlaşma / WhatsApp",
+                title: "Sosyal Yardım Zincir Mesajı",
+                mockup: `
+                    <div class="bg-emerald-950/40 p-4 rounded-lg border border-emerald-800/40 text-emerald-100">
+                        <div class="text-xs text-emerald-400 mb-1 font-bold">İletildi (Sıkça iletilmiş)</div>
+                        <p class="text-sm">"Bakanlık tüm vatandaşlara 5.000 TL bayram desteği veriyor! Başvuru için son 3 saat: <span class="underline">yardim-basvuru-tr.site</span> Bunu 10 gruba iletmeyenlere verilmeyecektir."</p>
                     </div>
                 `,
                 options: [
-                    { 
-                        text: "Hemen linki açıp anketi doldururum ve 10 kişilik aile grubuma iletirim.", 
-                        isCorrect: false 
-                    },
-                    { 
-                        text: "Zincirleme dolandırıcılıktır; hiçbir kurumsal marka 10 kişiye mesaj atma şartıyla para dağıtmaz, mesajı silip iletmem.", 
-                        isCorrect: true 
-                    },
-                    { 
-                        text: "Arkadaşım yalan söylemeyeceğine göre kupon kesinlikle gerçektir.", 
-                        isCorrect: false 
-                    }
+                    "Mesajı hemen aile grubuna iletir, sonra başvuru yaparım.",
+                    "Önce bağlantıya girip T.C. kimlik numaramı yazarım, para yatmazsa silerim.",
+                    "Mesajı siler ve kimseye iletmem; resmî destekleri yalnızca bakanlığın gov.tr uzantılı sitesinden kontrol ederim."
                 ],
-                redFlags: [
-                    "'10 kişiye ilet' mekanizması virüslerin ve veri toplayıcı sahte sitelerin en temel yayılma yöntemidir.",
-                    "Bağlantı adresi 'migros.com.tr' yerine '.club' uzantılı sahte bir sitedir.",
-                    "Güven duygusunu sömürmek için tanıdıklar üzerinden yayılması sağlanır."
-                ],
-                explanation: "Tebrikler! Arkadaşınız bilerek yalan söylemiyor olsa dahi kendisi de bu zincirleme tuzağa düşmüştür. Hiçbir yasal kurum 'şu kadar kişiye ilet' şartıyla hediye vermez."
+                correct: 2, // C şıkkı
+                feedback: "Doğru. '10 kişiye ilet' şartı koşan iletiler klasik zincir dolandırıcılığıdır. Resmî kamu kurumları WhatsApp üzerinden yardım dağıtmaz ve '.site' uzantısı kullanmaz."
             },
             {
-                category: "Yapay Zekâ & Deepfake",
-                categoryType: "deepfake",
-                badgeClass: "bg-purple-100 text-purple-800 border-purple-200",
-                badgeIcon: "video",
-                headline: "Ünlü İş İnsanının veya Sunucunun 'Garantili Yatırım' Tavsiyesi",
-                details: "Instagram ve TikTok akışınızda ünlü bir sunucunun haber bülteninde bir kripto/forex platformunu övdüğü ve '5.000 TL yatırana günlük 25.000 TL gelir garantisi' verdiği bir video sponsorlu olarak önünüze düştü.",
-                mockupHtml: `
-                    <div class="max-w-md mx-auto bg-slate-900 rounded-2xl p-4 text-white shadow-md">
-                        <div class="flex items-center gap-2 mb-2 text-xs text-slate-400">
-                            <div class="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-[10px] font-bold">TV</div>
-                            <span>Haber Akışı (Sponsorlu İçerik)</span>
-                        </div>
-                        <div class="relative bg-slate-800 rounded-xl overflow-hidden aspect-video flex flex-col items-center justify-center p-4 border border-slate-700 text-center">
-                            <i data-lucide="play-circle" class="w-12 h-12 text-white/80 mb-2"></i>
-                            <span class="text-xs text-amber-300 font-semibold">[VİDEO: Dudak hareketleri ses tonuyla tam senkron değil, göz kırpmaları yapay]</span>
-                            <span class="text-[11px] text-slate-300 mt-2 font-mono">“Devlet destekli bu algoritma ile ayda 100.000 TL kazanmayan kalmayacak...”</span>
-                        </div>
+                type: "Yapay Zekâ / Deepfake",
+                title: "Yatırım Fırsatı Sunan Ünlü Videosu",
+                mockup: `
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-slate-300">
+                        <div class="text-xs text-slate-500 mb-1">Sosyal Medya Video Reklamı</div>
+                        <p class="text-sm italic">"Tanınmış bir iş insanı dudak hareketleri hafif tutarsız olan bir videoda: 'Bu devlet destekli petrol hissesine 2000 TL yatırın, haftada 40.000 TL kazanın' demektedir."</p>
                     </div>
                 `,
                 options: [
-                    { 
-                        text: "Televizyondaki spiker bizzat konuştuğu için hemen sisteme para yatırırım.", 
-                        isCorrect: false 
-                    },
-                    { 
-                        text: "Yapay zekâ destekli ses ve yüz taklididir (Deepfake). Gerçek dışı kâr vaatleri dolandırıcılıktır.", 
-                        isCorrect: true 
-                    },
-                    { 
-                        text: "Sponsorlu reklam olduğuna göre sosyal medya platformu güvenlik denetimini yapmıştır.", 
-                        isCorrect: false 
-                    }
+                    "Videonun yapay zekâ ses ve yüz montajı (deepfake) olma ihtimalini gözetir, Sermaye Piyasası Kurulu (SPK) lisansı olmayan hiçbir sisteme itibar etmem.",
+                    "Ünlü kişi kendi sesiyle konuştuğuna göre güvenilirdir, az bir miktar yatırırım.",
+                    "Videoyu arkadaşlarıma gönderip onların da para kazanmasını sağlarım."
                 ],
-                redFlags: [
-                    "Finans dünyasında hiçbir yasal yatırım 'kesin ve garantili fahiş kâr' vaat edemez.",
-                    "Yapay zekâ video araçlarıyla tanınmış simaların ses ve dudak hareketleri kolayca taklit edilmektedir.",
-                    "Sosyal medya reklam denetimleri deepfake dolandırıcılıklarını her zaman anında filtreleyemez."
-                ],
-                explanation: "Mükemmel! Günümüzde dolandırıcılar ünlü simaların videolarını yapay zekâ (Deepfake) ile manipüle ederek sahte yatırım tuzaklarına dönüştürmektedir. Aşırı kâr vaat eden hiçbir içeriğe itibar edilmemelidir."
+                correct: 0, // A şıkkı
+                feedback: "Doğru. Günümüzde üretken yapay zekâ ile ünlü kişilerin ses ve görüntüleri kolaylıkla taklit edilmektedir. Gerçekçi olmayan kazanç vaatlerine itibar edilmemelidir."
             },
             {
-                category: "Kriz & Afet Dezenformasyonu",
-                categoryType: "disaster",
-                badgeClass: "bg-red-100 text-red-800 border-red-200",
-                badgeIcon: "alert-triangle",
-                headline: "Deprem Sonrası Anonim Ses Kaydı ve Baraj Çökme İddiası",
-                details: "Depremden hemen 2 saat sonra Telegram ve X üzerinden 'AFAD'da çalışan bir arkadaşım söyledi, baraj çatlamış sular geliyor şehri boşaltın' şeklinde anonim bir ses kaydı hızla yayılıyor.",
-                mockupHtml: `
-                    <div class="max-w-md mx-auto bg-slate-100 rounded-2xl p-4 border border-slate-300 shadow-sm text-slate-800 font-sans">
-                        <div class="flex items-center gap-2 text-rose-700 font-bold text-xs uppercase tracking-wide mb-2">
-                            <i data-lucide="radio" class="w-4 h-4"></i>
-                            <span>Anonim Paylaşım / Telegram</span>
-                        </div>
-                        <div class="p-3 bg-white rounded-xl border border-slate-200 flex items-center gap-3">
-                            <button class="w-10 h-10 rounded-full bg-rose-600 text-white flex items-center justify-center">
-                                <i data-lucide="volume-2" class="w-5 h-5"></i>
-                            </button>
-                            <div class="flex-1">
-                                <div class="text-xs font-semibold text-slate-900">Ses_Kaydi_Acil_Durum.aac</div>
-                                <div class="text-[11px] text-slate-500">“Teyzesinin oğlu itfaiyede olan biri söyledi, baraj patlamış...”</div>
-                            </div>
-                        </div>
+                type: "Kriz ve Afet Dezenformasyonu",
+                title: "Deprem Sonrası Panik Paylaşımı",
+                mockup: `
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-slate-300">
+                        <div class="text-xs text-slate-500 mb-1">Anonim X / Twitter Hesabı</div>
+                        <p class="text-sm">"ÇOK ACİL! Baraj patladı, sular şehre geliyor, derhal yüksek yerlere kaçın! Yetkililer saklıyor, yayabildiğiniz kadar yayın!!"</p>
                     </div>
                 `,
                 options: [
-                    { 
-                        text: "Panik yapıp derhal arabaya biner, tüm tanıdıklarıma ses kaydını ileterek kaçmalarını söylerim.", 
-                        isCorrect: false 
-                    },
-                    { 
-                        text: "Paylaşımı durdururum; afet anlarında sadece resmî kurumların (AFAD, Valilik, Teyit.org) doğrulamalarına itibar ederim.", 
-                        isCorrect: true 
-                    },
-                    { 
-                        text: "Ses kaydındaki kişi samimi ve telaşlı konuştuğuna göre kesinlikle doğrudur.", 
-                        isCorrect: false 
-                    }
+                    "Hemen retweet yapar ve tanıdığım herkesi arayıp şehirden çıkmalarını söylerim.",
+                    "İddiayı teyit etmek için AFAD, Valilik veya resmî kriz masası açıklamalarını beklerim; doğrulanmamış panik içeriğini yaymam.",
+                    "Korktuğum için haberi kopyalayıp WhatsApp durumumda paylaşırım."
                 ],
-                redFlags: [
-                    "Kaynağı ve konuşanı belli olmayan ses kayıtları afet dönemlerinde infiale ve kurtarma ekiplerinin engellenmesine yol açar.",
-                    "'Arkadaşımın akrabası söyledi' gibi kulaktan dolma ifadeler dezenformasyonun klasik şablonudur.",
-                    "Resmî kurum açıklamaları gelmeden afet alanında hareket etmek can güvenliğini tehlikeye atar."
-                ],
-                explanation: "Hayatî bir tespit! Afet ve kriz anlarında yayılan teyitsiz ses kayıtları trafiği kilitleyerek arama-kurtarma ambulanslarının geçişini durdurabilmektedir. Resmî makamlarca teyit edilmemiş panik içerikleri asla yayılmamalıdır."
+                correct: 1, // B şıkkı
+                feedback: "Doğru. Afet anlarında 'Yetkililer saklıyor' kalıbıyla yayılan içerikler kamu düzenini bozan dezenformasyonlardır. Yalnızca AFAD ve resmî mülki amirliklerin açıklamaları esas alınır."
             },
             {
-                category: "Resmî Kurum Taklidi",
-                categoryType: "phishing",
-                badgeClass: "bg-blue-100 text-blue-800 border-blue-200",
-                badgeIcon: "landmark",
-                headline: "Sahte e-Devlet Aidat İade Bildirimi",
-                details: "Arama motorunda arama yaparken veya e-postanıza gelen 'Geçmişe dönük aidat ve vergi iadenizi e-Devlet kapısından hemen çekin' bağlantısıyla karşılaştınız.",
-                mockupHtml: `
-                    <div class="max-w-md mx-auto bg-white rounded-2xl p-4 border border-slate-300 shadow-sm">
-                        <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-                            <div class="flex items-center gap-2">
-                                <span class="w-3 h-3 rounded-full bg-rose-500"></span>
-                                <span class="w-3 h-3 rounded-full bg-amber-500"></span>
-                                <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-                            </div>
-                            <span class="text-[11px] text-slate-400 font-mono">Tarayıcı Adres Çubuğu</span>
+                type: "Resmî Kurum Taklidi",
+                title: "Sahte e-Devlet Aidat İadesi",
+                mockup: `
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 font-sans">
+                        <div class="text-xs text-slate-400 bg-slate-900 px-3 py-1.5 rounded flex items-center gap-2 mb-2">
+                            <i class="fa-solid fa-lock text-emerald-400 text-xs"></i> https://turkiye-aidat-iade.me/giris
                         </div>
-                        <div class="mt-2 p-2 bg-slate-100 rounded-lg text-xs font-mono text-slate-700 flex items-center gap-1.5 break-all">
-                            <i data-lucide="lock" class="w-3.5 h-3.5 text-slate-400 shrink-0"></i>
-                            <span>https://</span><span class="text-rose-600 font-bold">turkiye-edevlet-iadeportali.com</span>/giris
-                        </div>
-                        <div class="mt-3 text-xs text-slate-600">
-                            Sayfada T.C. Kimlik numaranız, şifreniz ve ardından kredi kartı bilgileriniz talep ediliyor.
-                        </div>
+                        <p class="text-xs text-slate-300">e-Devlet logosu kullanılmış bir sayfada kredi kartı aidatınızın iadesi için kart numarası ve CVV kodu talep edilmektedir.</p>
                     </div>
                 `,
                 options: [
-                    { 
-                        text: "Sayfada kilit simgesi (https) olduğu için güvenlidir, kart bilgilerimi girip iademi alırım.", 
-                        isCorrect: false 
-                    },
-                    { 
-                        text: "Oltalama sitesidir! Türkiye Cumhuriyeti resmî e-Devlet adresi sadece 'turkiye.gov.tr' dir; asla kredi kartı bilgisi istemez.", 
-                        isCorrect: true 
-                    },
-                    { 
-                        text: "Kart bilgilerimi girerim ama şifremi yanlış yazarım.", 
-                        isCorrect: false 
-                    }
+                    "Adres çubuğundaki kilit simgesi güvenli olduğunu gösterir, kart bilgilerimi girerim.",
+                    "Devlet aidat iadesi yapacağı için kart şifremi de girer beklerim.",
+                    "Alan adının 'turkiye.gov.tr' olmadığını fark eder, sayfayı kapatırım; e-Devlet'in asla kart bilgisi ve CVV istemeyeceğini bilirim."
                 ],
-                redFlags: [
-                    "Tüm devlet kurumları istisnasız '.gov.tr' uzantısına sahiptir; '.com' uzantılı e-Devlet olamaz.",
-                    "Adres çubuğundaki kilit simgesi (SSL sertifikası) sitenin güvenli olduğunu değil, yalnızca bağlantının şifreli olduğunu gösterir. Dolandırıcılar da kolayca SSL alabilir.",
-                    "Devlet kurumları aidat iadesi bahanesiyle vatandaşın kredi kartı numarasını ve arkasındaki CVV kodunu talep etmez."
-                ],
-                explanation: "Harika! HTTPS kilit simgesi günümüzde dolandırıcılar tarafından da kullanılmaktadır. Tek belirleyici kriter alan adının tescilli '.gov.tr' olmasıdır."
+                correct: 2, // C şıkkı
+                feedback: "Doğru. Kilit simgesi sadece bağlantının şifreli olduğunu gösterir; sitenin meşru olduğunu kanıtlamaz. Türkiye Cumhuriyeti resmî kurumları '.me' uzantısı kullanmaz ve kredi kartı CVV kodu istemez."
             },
             {
-                category: "Manipüle Edilmiş Haber / Tık Tuzağı",
-                categoryType: "clickbait",
-                badgeClass: "bg-indigo-100 text-indigo-800 border-indigo-200",
-                badgeIcon: "newspaper",
-                headline: "Sansasyonel Manşet ile Metin İçeriğinin Çelişmesi",
-                details: "Sosyal medyada bir haber sitesinin paylaştığı şu manşeti gördünüz: 'BİLİM İNSANLARI ŞOKTA: GÜNDE BİR BARDAK İÇEN KANSERDEN KURTULUYOR!'",
-                mockupHtml: `
-                    <div class="max-w-md mx-auto bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
-                        <div class="bg-gradient-to-r from-rose-600 to-indigo-700 text-white p-3 font-bold text-xs sm:text-sm tracking-wide">
-                            SON DAKİKA: KANSERİN İLACI BULUNDU MU?
-                        </div>
-                        <div class="p-4 text-xs text-slate-700 leading-relaxed">
-                            Haberin 8. paragrafındaki küçük detay: <em>“Laboratuvar ortamında fare hücrelerinde yapılan ön testte x maddesinin hücre bölünmesini %2 yavaşlattığı gözlendi; insanlar üzerinde etkisi henüz bilinmiyor.”</em>
-                        </div>
+                type: "Tık Tuzağı (Clickbait)",
+                title: "Sansasyonel Sağlık Manşeti",
+                mockup: `
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-slate-300">
+                        <div class="text-xs text-red-400 font-bold mb-1">SON DAKİKA HABERİ</div>
+                        <p class="text-sm font-bold">"Her gün içtiğimiz o içecek meğer zehir saçıyormuş! Milyonlarca kişi tehlikede, hekimler açıkladı..."</p>
                     </div>
                 `,
                 options: [
-                    { 
-                        text: "Hemen haberi hasta olan akrabalarıma müjde olarak gönderirim.", 
-                        isCorrect: false 
-                    },
-                    { 
-                        text: "Tıklama tuzağıdır (Clickbait). Bilimsel ön çalışma saptırılarak sahte umut ve etkileşim üretilmektedir.", 
-                        isCorrect: true 
-                    },
-                    { 
-                        text: "Büyük haber portalı paylaştığına göre kesin çözüm bulunmuştur.", 
-                        isCorrect: false 
-                    }
+                    "Haberi hemen paylaşarak sevdiklerimi uyarırım.",
+                    "Haberin tamamını okur, hangi hekimin veya bilimsel derginin kaynak gösterildiğini incelerim; kaynak yoksa ciddiye almam.",
+                    "Bahsedilen içeceği hayatımdan tamamen çıkarırım."
                 ],
-                redFlags: [
-                    "Abartılı ve büyük harflerle yazılmış sansasyonel başlıklar gerçeği çarpıtma eğilimindedir.",
-                    "Laboratuvar aşamasındaki ön deneyler insan tedavisiymiş gibi sunulmaktadır.",
-                    "Tıklama başına reklam geliri elde etmek için halk sağlığı suistimal edilmektedir."
-                ],
-                explanation: "Çok doğru! Bilim haberciliğinde başlık ile içerik arasındaki uçurum dezenformasyonun en yaygın türlerindendir. Asıl araştırmayı ve hakemli bilim dergilerini teyit etmeden tıbbi iddialara itibar edilmemelidir."
+                correct: 1, // B şıkkı
+                feedback: "Doğru. 'O içecek', 'o besin' gibi gizemli ve korku yayan başlıklar tık tuzağıdır (clickbait). Bilimsel kurum veya makale referansı içermeyen sansasyonel iddialara itibar edilmez."
             },
             {
-                category: "Ele Geçirilmiş Hesap / Sosyal Mühendislik",
-                categoryType: "social",
-                badgeClass: "bg-amber-100 text-amber-800 border-amber-200",
-                badgeIcon: "user-x",
-                headline: "Sosyal Medyadaki Yakın Arkadaştan Gelen 'Acil IBAN' Mesajı",
-                details: "Samimi olduğunuz bir arkadaşınızın Instagram hesabından gece yarısı şu mesaj geldi: 'Kardeşim çok acil hastanedeyim, kartım bloke oldu, şu IBAN'a 3.500 TL atabilir misin sabaha hemen göndereyim?'",
-                mockupHtml: `
-                    <div class="max-w-md mx-auto bg-slate-900 text-white rounded-2xl p-4 shadow-sm text-xs font-sans">
-                        <div class="flex items-center gap-3 pb-3 border-b border-slate-800">
-                            <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center font-bold text-xs">MK</div>
-                            <div>
-                                <div class="font-bold text-slate-100">Mehmet Kaya</div>
-                                <div class="text-[10px] text-emerald-400">Şimdi aktif</div>
-                            </div>
-                        </div>
-                        <div class="mt-3 p-3 bg-slate-800 rounded-xl text-slate-200 leading-relaxed text-xs">
-                            Kankam acil ameliyat masrafı çıktı, hastane bekletiyor. Kart limitim yetmedi. Göndereceğim IBAN arkadaşımın hesabı hemen 3.500 atabilir misin lütfen?
-                        </div>
+                type: "Hesap Gaspı / Sosyal Mühendislik",
+                title: "Arkadaştan Gelen Acil Para Talebi",
+                mockup: `
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-slate-300">
+                        <div class="text-xs text-slate-500 mb-1">Instagram Direkt Mesaj (DM)</div>
+                        <p class="text-sm">"Kardeşim çok acil hastanedeyim, kartım bloke oldu. Şu IBAN'a acil 3.000 TL atabilir misin, akşama hemen ödeyeceğim: TR98 0006... (Alıcı: Yabancı bir isim)"</p>
                     </div>
                 `,
                 options: [
-                    { 
-                        text: "Arkadaşım mağdur olmasın diye hemen IBAN'a parayı transfer ederim.", 
-                        isCorrect: false 
-                    },
-                    { 
-                        text: "Hesap ele geçirilmiş olabilir. Parayı göndermeden önce arkadaşımı normal telefon hattından arayarak bizzat teyit ederim.", 
-                        isCorrect: true 
-                    },
-                    { 
-                        text: "Sosyal medyadan yazıştığımız için kesinlikle kendisidir.", 
-                        isCorrect: false 
-                    }
+                    "Arkadaşımı doğrudan normal telefon numarasından arayarak durumu sesli olarak teyit ederim.",
+                    "Arkadaşım zor durumda olduğu için hiç sormadan parayı belirtilen IBAN'a yollarım.",
+                    "Instagram'dan 'Gerçekten sen misin?' diye mesaj yazarım."
                 ],
-                redFlags: [
-                    "Çalınan sosyal medya hesaplarından en sık uygulanan dolandırıcılık türü 'acil para/hastane' senaryosudur.",
-                    "Verilen IBAN başkası adına kayıtlıdır.",
-                    "Aciliyet hissi ve panik yaratarak kurbanın sorgulama yapması engellenmeye çalışılır."
+                correct: 0, // A şıkkı
+                feedback: "Doğru. Ele geçirilen sosyal medya hesapları üzerinden acil para isteme yaygın bir sosyal mühendislik yöntemidir. Para göndermeden önce kişi mutlaka başka bir kanaldan sesli aranmalıdır."
+            },
+            {
+                type: "Bankacılık Oltalama",
+                title: "Kart Aidatı ve Masraf İadesi",
+                mockup: `
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-slate-300">
+                        <div class="text-xs text-slate-500 mb-1">Arama Motoru Sponsorlu Reklamı</div>
+                        <p class="text-sm">"Bankanızdan 4.500 TL masraf iadesi almak için tıklayın. [Sponsorlu: <span class="text-sky-400">banka-iade-islemleri.click</span>]"</p>
+                    </div>
+                `,
+                options: [
+                    "Google aramasında en üstte çıktığına göre güvenilirdir, banka giriş şifremi girerim.",
+                    "Arama motorlarındaki sponsorlu her bağlantının güvenli olmadığını bilir; bankanın resmî mobil uygulaması haricinde işlem yapmam.",
+                    "Hemen bağlantıya tıklar, gelen SMS kodunu sayfadaki kutucuğa yazarım."
                 ],
-                explanation: "Tebrikler! Sosyal mühendislik saldırılarının başında ele geçirilen hesaplardan yakın çevreden acil borç istemek gelir. Sesini telefonda bizzat duymadan veya farklı kanaldan doğrulamadan asla para transferi yapılmamalıdır."
+                correct: 1, // B şıkkı
+                feedback: "Doğru. Dolandırıcılar arama motorlarına ücretli reklam vererek ilk sıraya yerleşebilir. Banka girişleri asla reklam bağlantılarından yapılmamalı, resmî uygulamalar kullanılmalıdır."
+            },
+            {
+                type: "Görsel Manipülasyonu",
+                title: "Eski Fotoğrafın Yeni Gibi Sunulması",
+                mockup: `
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-slate-300">
+                        <div class="text-xs text-slate-500 mb-1">Sosyal Medya İletisi</div>
+                        <p class="text-sm">"Bugün falan bölgede büyük patlama oldu!" açıklamasıyla paylaşılan yangın fotoğrafı.</p>
+                    </div>
+                `,
+                options: [
+                    "Fotoğraf çok net olduğu için şüphe etmem, hemen tanıdıklarıma yollarım.",
+                    "Görseli kaydedip Google Lens veya Yandex ile 'Tersine Görsel Arama' yaparak fotoğrafın eski bir olaya ait olup olmadığını denetlerim.",
+                    "Fotoğrafın altına 'Geçmiş olsun' yazıp paylaşırım."
+                ],
+                correct: 1, // B şıkkı
+                feedback: "Doğru. Dezenformasyonun en yaygın türü, geçmiş yıllara veya başka ülkelere ait görsellerin güncel bir olaymış gibi servis edilmesidir. Tersine görsel arama hakikati ortaya çıkarır."
+            },
+            {
+                type: "Karekod / Fiziksel Oltalama (Quishing)",
+                title: "Otopark veya Sokaktaki Sahte QR Kod",
+                mockup: `
+                    <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 text-slate-300">
+                        <div class="text-xs text-slate-500 mb-1">Fiziksel Levha</div>
+                        <p class="text-sm">Parkomat üzerine yapıştırılmış bir etiket: "Hızlı otopark ödemesi için QR kodu okutun." (Etiketin altındaki orijinal kodun üzerine yapıştırıldığı bellidir).</p>
+                    </div>
+                `,
+                options: [
+                    "Karekodun yönlendirdiği internet sitesinin alan adını dikkatle incelerim; fiziksel olarak sonradan yapıştırılmış şüpheli karekodlara kart bilgisi girmem.",
+                    "Kullanışlı olduğu için hemen taratıp kredi kartı bilgilerimi yazarım.",
+                    "Nasılsa küçük bir meblağdır diyerek onay kodunu onaylarım."
+                ],
+                correct: 0, // A şıkkı
+                feedback: "Doğru. Fiziksel tabelaların üzerine sonradan yapıştırılan sahte karekodlar (Quishing), kullanıcıları sahte ödeme sayfalarına yönlendirir. Alan adı teyit edilmeden ödeme yapılmamalıdır."
             }
         ];
 
-        let currentQuizIndex = 0;
-        let quizScore = 0;
-        let correctAnswersCount = 0;
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
 
-        function loadQuestion() {
-            const currentItem = quizData[currentQuizIndex];
-            
-            // Üst Sayaç ve İlerleme
-            document.getElementById('quizStepText').innerHTML = `<i data-lucide="layers" class="w-4 h-4 inline mr-1"></i>Senaryo ${currentQuizIndex + 1} / ${quizData.length}`;
-            document.getElementById('quizScoreText').textContent = quizScore;
-            const progressPercent = ((currentQuizIndex + 1) / quizData.length) * 100;
-            document.getElementById('quizProgressBar').style.width = `${progressPercent}%`;
+        function renderQuestion() {
+            answered = false;
+            const q = quizData[currentQuestion];
+            document.getElementById('case-type').innerText = q.type;
+            document.getElementById('case-title').innerText = q.title;
+            document.getElementById('case-mockup').innerHTML = q.mockup;
+            document.getElementById('quiz-progress-text').innerText = `Vaka ${currentQuestion + 1} / ${quizData.length}`;
+            document.getElementById('quiz-score-badge').innerText = `Puan: ${score}`;
+            document.getElementById('quiz-progress-bar').style.width = `${((currentQuestion + 1) / quizData.length) * 100}%`;
 
-            // Kategori Rozeti
-            const categoryBadge = document.getElementById('quizCategoryBadge');
-            categoryBadge.className = `inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${currentItem.badgeClass}`;
-            categoryBadge.innerHTML = `<i data-lucide="${currentItem.badgeIcon}" class="w-3.5 h-3.5"></i> <span>${currentItem.category}</span>`;
+            const optContainer = document.getElementById('quiz-options');
+            optContainer.innerHTML = '';
 
-            // Görsel Simülasyon Kartı
-            document.getElementById('quizMockupContainer').innerHTML = currentItem.mockupHtml;
-
-            // Metinler
-            document.getElementById('quizHeadline').textContent = currentItem.headline;
-            document.getElementById('quizDetails').textContent = currentItem.details;
-
-            // Seçenekler
-            const optionsContainer = document.getElementById('quizOptionsContainer');
-            optionsContainer.innerHTML = '';
-
-            const feedbackBox = document.getElementById('quizFeedbackBox');
-            feedbackBox.className = 'hidden mt-6 p-5 rounded-2xl border transition-all text-sm leading-relaxed';
-            document.getElementById('quizNextBtn').classList.add('hidden');
-
-            currentItem.options.forEach((opt, idx) => {
+            const letters = ['A', 'B', 'C'];
+            q.options.forEach((opt, idx) => {
                 const btn = document.createElement('button');
-                btn.className = 'w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:border-blue-500 hover:bg-blue-50/40 transition-all text-xs sm:text-sm text-slate-800 font-medium flex items-start gap-3 group';
-                btn.innerHTML = `
-                    <span class="w-6 h-6 rounded-lg bg-slate-100 group-hover:bg-blue-100 group-hover:text-blue-700 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 text-slate-600">
-                        ${String.fromCharCode(65 + idx)}
-                    </span>
-                    <span class="flex-1">${opt.text}</span>
-                `;
-                btn.onclick = () => handleAnswer(opt.isCorrect, btn);
-                optionsContainer.appendChild(btn);
+                btn.className = "w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:border-indigo-500 transition-all flex items-start gap-3 text-sm text-slate-200";
+                btn.innerHTML = `<span class="w-6 h-6 rounded-lg bg-slate-700 flex items-center justify-center font-bold text-xs text-slate-300 shrink-0">${letters[idx]}</span> <span>${opt}</span>`;
+                btn.onclick = () => selectOption(idx);
+                optContainer.appendChild(btn);
             });
 
-            // İkonları yeniden oluştur
-            lucide.createIcons();
+            document.getElementById('quiz-feedback').className = "hidden mt-6 p-4 rounded-xl text-sm leading-relaxed border";
+            document.getElementById('next-btn').classList.add('hidden');
         }
 
-        function handleAnswer(isCorrect, selectedBtn) {
-            const currentItem = quizData[currentQuizIndex];
-            const feedbackBox = document.getElementById('quizFeedbackBox');
-            const nextBtn = document.getElementById('quizNextBtn');
-            const optionsContainer = document.getElementById('quizOptionsContainer');
+        function selectOption(index) {
+            if (answered) return;
+            answered = true;
+            const q = quizData[currentQuestion];
+            const buttons = document.getElementById('quiz-options').querySelectorAll('button');
+            const feedbackBox = document.getElementById('quiz-feedback');
 
-            // Butonları kilitle
-            Array.from(optionsContainer.children).forEach(btn => {
-                btn.disabled = true;
-                btn.classList.add('cursor-not-allowed', 'opacity-60');
-            });
-            selectedBtn.classList.remove('opacity-60');
-
-            // Kırmızı bayraklar (Red Flags) HTML'i
-            const flagsHtml = currentItem.redFlags.map(f => `<li class="flex items-start gap-2 mt-1.5"><i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i><span>${f}</span></li>`).join('');
-
-            if (isCorrect) {
-                quizScore += 10;
-                correctAnswersCount++;
-                document.getElementById('quizScoreText').textContent = quizScore;
-                selectedBtn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-950');
-                
-                feedbackBox.className = 'mt-6 p-5 rounded-2xl border bg-emerald-50/90 border-emerald-200 text-emerald-900 text-xs sm:text-sm leading-relaxed block';
-                feedbackBox.innerHTML = `
-                    <div class="flex items-center gap-2 font-bold text-sm text-emerald-800 mb-2">
-                        <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600"></i>
-                        <span>Tebrikler! Doğru Değerlendirme</span>
-                    </div>
-                    <p class="mb-3">${currentItem.explanation}</p>
-                    <div class="pt-3 border-t border-emerald-200/80">
-                        <span class="font-bold text-xs uppercase tracking-wider text-emerald-800">Tespit Edilen Tehlike İşaretleri:</span>
-                        <ul class="text-xs text-emerald-900 mt-1">${flagsHtml}</ul>
-                    </div>
-                `;
+            if (index === q.correct) {
+                score++;
+                document.getElementById('quiz-score-badge').innerText = `Puan: ${score}`;
+                buttons[index].classList.remove('bg-slate-800', 'border-slate-700');
+                buttons[index].classList.add('bg-emerald-950/60', 'border-emerald-500', 'text-emerald-200');
+                feedbackBox.className = "mt-6 p-4 rounded-xl text-sm leading-relaxed border bg-emerald-950/40 border-emerald-500/50 text-emerald-300 block";
+                feedbackBox.innerHTML = `<strong>Tebrikler:</strong> ${q.feedback}`;
             } else {
-                selectedBtn.classList.add('bg-rose-50', 'border-rose-500', 'text-rose-950');
-                
-                feedbackBox.className = 'mt-6 p-5 rounded-2xl border bg-rose-50/90 border-rose-200 text-rose-900 text-xs sm:text-sm leading-relaxed block';
-                feedbackBox.innerHTML = `
-                    <div class="flex items-center gap-2 font-bold text-sm text-rose-800 mb-2">
-                        <i data-lucide="shield-x" class="w-5 h-5 text-rose-600"></i>
-                        <span>Dikkat! Bu Tercih Güvenliğinizi Riske Atar</span>
-                    </div>
-                    <p class="mb-3">${currentItem.explanation}</p>
-                    <div class="pt-3 border-t border-rose-200/80">
-                        <span class="font-bold text-xs uppercase tracking-wider text-rose-800">Gözden Kaçan Kritik İşaretler:</span>
-                        <ul class="text-xs text-rose-900 mt-1">${flagsHtml}</ul>
-                    </div>
-                `;
+                buttons[index].classList.remove('bg-slate-800', 'border-slate-700');
+                buttons[index].classList.add('bg-red-950/60', 'border-red-500', 'text-red-200');
+                buttons[q.correct].classList.remove('bg-slate-800', 'border-slate-700');
+                buttons[q.correct].classList.add('bg-emerald-950/60', 'border-emerald-500', 'text-emerald-200');
+                feedbackBox.className = "mt-6 p-4 rounded-xl text-sm leading-relaxed border bg-red-950/40 border-red-500/50 text-red-300 block";
+                feedbackBox.innerHTML = `<strong>Hatalı Hamle:</strong> ${q.feedback}`;
             }
 
-            lucide.createIcons();
-            nextBtn.classList.remove('hidden');
+            document.getElementById('next-btn').classList.remove('hidden');
         }
 
-        document.getElementById('quizNextBtn').addEventListener('click', () => {
-            currentQuizIndex++;
-            if (currentQuizIndex < quizData.length) {
-                loadQuestion();
+        document.getElementById('next-btn').onclick = () => {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                renderQuestion();
             } else {
-                showQuizResults();
+                showQuizResult();
             }
-        });
+        };
 
-        function showQuizResults() {
-            document.getElementById('quizQuestionBox').classList.add('hidden');
-            const resultBox = document.getElementById('quizResultBox');
+        function showQuizResult() {
+            document.getElementById('quiz-card').classList.add('hidden');
+            const resultBox = document.getElementById('quiz-result');
             resultBox.classList.remove('hidden');
+            document.getElementById('result-score').innerText = `${score} / 10`;
 
-            document.getElementById('quizFinalScore').textContent = `${quizScore} / ${quizData.length * 10}`;
+            const title = document.getElementById('result-title');
+            const desc = document.getElementById('result-desc');
 
-            const message = document.getElementById('quizFinalMessage');
-            const statPhishing = document.getElementById('statPhishing');
-            const statManip = document.getElementById('statManip');
-            const statSocial = document.getElementById('statSocial');
-
-            if (quizScore >= 60) {
-                message.textContent = "Olağanüstü bir farkındalık seviyesi! SMS tuzaklarını, deepfake videoları ve sahte kurum linklerini kolayca ayırt edebiliyorsunuz. Toplumda örnek bir dijital okuryazarsınız.";
-                statPhishing.textContent = "Yüksek Direnç ✓";
-                statPhishing.className = "text-sm font-bold text-emerald-600 mt-1";
-                statManip.textContent = "Tam Teyitli ✓";
-                statManip.className = "text-sm font-bold text-emerald-600 mt-1";
-                statSocial.textContent = "Bilinçli Refleks ✓";
-                statSocial.className = "text-sm font-bold text-emerald-600 mt-1";
-            } else if (quizScore >= 40) {
-                message.textContent = "İyi bir temele sahipsiniz ancak bazı kurnaz sosyal mühendislik ve oltalama senaryolarında yanılma ihtimaliniz bulunuyor. Sayfadaki kontrol listesini pratik edin.";
-                statPhishing.textContent = "Orta Seviye";
-                statPhishing.className = "text-sm font-bold text-amber-600 mt-1";
-                statManip.textContent = "Geliştirilebilir";
-                statManip.className = "text-sm font-bold text-amber-600 mt-1";
-                statSocial.textContent = "Dikkat Gerekli";
-                statSocial.className = "text-sm font-bold text-amber-600 mt-1";
+            if (score >= 8) {
+                title.innerText = "Yüksek Dijital Farkındalık";
+                desc.innerText = "Tebrikler. Oltalama tuzaklarını, deepfake içerikleri ve sahte alan adlarını başarıyla ayırt edebiliyorsunuz.";
+            } else if (score >= 5) {
+                title.innerText = "Orta Düzey Farkındalık";
+                desc.innerText = "Temel tehlikelerin farkındasınız ancak acele karar verdiğinizde yanılabiliyorsunuz. Alan adlarını ve tersine görsel aramayı daha sık kullanmalısınız.";
             } else {
-                message.textContent = "Dijital tuzaklara karşı savunmasız görünüyorsunuz. İnternetteki hiçbir bağlantıya araştırmadan tıklamamanız ve şüpheli durumlarda mutlaka telefonla teyit almanız önerilir.";
-                statPhishing.textContent = "Yüksek Risk ⚠️";
-                statPhishing.className = "text-sm font-bold text-rose-600 mt-1";
-                statManip.textContent = "Yüksek Risk ⚠️";
-                statManip.className = "text-sm font-bold text-rose-600 mt-1";
-                statSocial.textContent = "Yüksek Risk ⚠️";
-                statSocial.className = "text-sm font-bold text-rose-600 mt-1";
-            }
-
-            lucide.createIcons();
-            resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
-        function resetQuiz() {
-            currentQuizIndex = 0;
-            quizScore = 0;
-            correctAnswersCount = 0;
-            document.getElementById('quizResultBox').classList.add('hidden');
-            document.getElementById('quizQuestionBox').classList.remove('hidden');
-            loadQuestion();
-        }
-
-        // Testi Başlat
-        loadQuestion();
-
-        // ----------------------------------------------------
-        // 2. DOĞRULAMA ÇEKLİSTİ (CHECKLIST GAUGE)
-        // ----------------------------------------------------
-        const checklistCheckboxes = document.querySelectorAll('.checklist-item');
-        const gaugeCircle = document.getElementById('gaugeCircle');
-        const gaugePercent = document.getElementById('gaugePercent');
-        const gaugeVerdict = document.getElementById('gaugeVerdict');
-        const gaugeAdvice = document.getElementById('gaugeAdvice');
-
-        const totalItems = checklistCheckboxes.length;
-        const circumference = 251.2; // 2 * PI * 40
-
-        function updateGauge() {
-            const checkedCount = Array.from(checklistCheckboxes).filter(cb => cb.checked).length;
-            const percentage = Math.round((checkedCount / totalItems) * 100);
-
-            // SVG çember animasyonu
-            const offset = circumference - (percentage / 100) * circumference;
-            gaugeCircle.style.strokeDashoffset = offset;
-            gaugePercent.textContent = `${percentage}%`;
-
-            if (percentage === 0) {
-                gaugeCircle.setAttribute('stroke', '#cbd5e1');
-                gaugeVerdict.className = 'mt-4 px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200 inline-block';
-                gaugeVerdict.textContent = 'Henüz Doğrulanmadı';
-                gaugeAdvice.textContent = 'Lütfen kriterleri kontrol ederek işaretleyiniz.';
-            } else if (percentage < 60) {
-                gaugeCircle.setAttribute('stroke', '#e11d48');
-                gaugeVerdict.className = 'mt-4 px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200 inline-block';
-                gaugeVerdict.textContent = 'Yüksek Risk / Şüpheli';
-                gaugeAdvice.textContent = 'Maddelerin çoğunu karşılamıyor. Bu içeriği kesinlikle yaymayın.';
-            } else if (percentage < 100) {
-                gaugeCircle.setAttribute('stroke', '#eab308');
-                gaugeVerdict.className = 'mt-4 px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200 inline-block';
-                gaugeVerdict.textContent = 'Kısmen Güvenilir';
-                gaugeAdvice.textContent = 'Önemli adımlar teyit edildi ancak eksik kalan kriterleri de araştırın.';
-            } else {
-                gaugeCircle.setAttribute('stroke', '#10b981');
-                gaugeVerdict.className = 'mt-4 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 inline-block';
-                gaugeVerdict.textContent = 'Doğrulanmış İçerik';
-                gaugeAdvice.textContent = 'Tüm filtreleri başarıyla geçti. Güvenle referans gösterilebilir.';
+                title.innerText = "Riskli Dijital Refleks";
+                desc.innerText = "Simülasyondaki birçok kritik tuzağa yakalandınız. Rehber bölümündeki doğrulama usullerini dikkatle incelemeniz tavsiye edilir.";
             }
         }
 
-        checklistCheckboxes.forEach(cb => {
-            cb.addEventListener('change', updateGauge);
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('quiz-card').classList.remove('hidden');
+            document.getElementById('quiz-result').classList.add('hidden');
+            renderQuestion();
+        }
+
+        // Kontrol Listesi Dinamik Hesaplama
+        const checkboxes = document.querySelectorAll('.check-item');
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', updateChecklist);
         });
+
+        function updateChecklist() {
+            let checkedCount = 0;
+            checkboxes.forEach(cb => { if(cb.checked) checkedCount++; });
+
+            document.getElementById('check-ratio').innerText = `${checkedCount}/5`;
+            const status = document.getElementById('check-status');
+            const desc = document.getElementById('check-desc');
+
+            if (checkedCount === 5) {
+                status.innerText = "Yüksek Güvenilirlik";
+                status.className = "text-sm font-bold text-emerald-400";
+                desc.innerText = "İçerik temel tüm teyit kriterlerini sağladı. Güvenle referans verilebilir.";
+            } else if (checkedCount >= 3) {
+                status.innerText = "Şüpheli / Doğrulanmaya Muhtaç";
+                status.className = "text-sm font-bold text-amber-400";
+                desc.innerText = "Bazı teyit unsurları eksik. Resmî kaynaklar teyit etmeden paylaşmayın.";
+            } else if (checkedCount > 0) {
+                status.innerText = "Yüksek Risk / Asılsız İddia Olasılığı";
+                status.className = "text-sm font-bold text-red-400";
+                desc.innerText = "Kritik teyit basamakları başarısız. İçeriğe itibar etmeyin.";
+            } else {
+                status.innerText = "Değerlendirme Yapılmadı";
+                status.className = "text-sm font-bold text-white";
+                desc.innerText = "Maddeleri işaretleyerek teyit düzeyini kontrol edin.";
+            }
+        }
 
         function resetChecklist() {
-            checklistCheckboxes.forEach(cb => cb.checked = false);
-            updateGauge();
+            checkboxes.forEach(cb => cb.checked = false);
+            updateChecklist();
         }
 
-        // ----------------------------------------------------
-        // 3. FORM GÖNDERİMİ
-        // ----------------------------------------------------
-        function handleFormSubmit(e) {
+        // İstemci Taraflı Form Yönetimi
+        function handleReport(e) {
             e.preventDefault();
-            const form = document.getElementById('reportForm');
-            const successMsg = document.getElementById('formSuccessMessage');
-
-            // Formu gizle veya temizle, başarı mesajını göster
-            form.reset();
-            successMsg.classList.remove('hidden');
-
+            const alert = document.getElementById('report-success');
+            alert.classList.remove('hidden');
+            e.target.reset();
             setTimeout(() => {
-                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 100);
+                alert.classList.add('hidden');
+            }, 4000);
         }
+
+        // İlk Yükleme
+        renderQuestion();
     </script>
 </body>
 </html>
